@@ -26,3 +26,18 @@
    - Jason:
          - Set up initial (simple model)
          - Shipping Cost
+## Meeting 11/3
+ - Product: shoes only
+ - Need to do:
+        - Average price: go to Nike website and average top 10 best sellers
+- Cost : C_ijt = 1/3 * (cost of sales)
+- Shipping Cost: $0.10 - $0.50 per pair of shoes
+      - Once we have sale price of shoes, test inventory vs shipping costs with above assumptions - Virginia
+- Supply: Max number of shoes a factory can reduce
+        - Number of shoes told * 1.1-1.3 --> divide between factories depending on workers - Virginia
+- To Do:
+  - Get datasets needed for model - Virginia
+  - Read in data to Julia - Virginia
+  - Pre-processing - Virginia
+  - Start writing constraints - Jason
+
