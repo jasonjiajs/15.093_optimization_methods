@@ -40,4 +40,12 @@
   - Read in data to Julia - Virginia
   - Pre-processing - Virginia
   - Start writing constraints - Jason
+ 
+  ## Meeting 11/16
+  - Virginia: Add noise to holding cost - force everyone between 0.2-0.3 but randomly
+  - Jason: Re-write the code for updated distances
+  - Optimization Problem:
+        - Basic Model --> no integrality then add it
+        - Test Parameter Values
+        - Covid Shocks 
 
