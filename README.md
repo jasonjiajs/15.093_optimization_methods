@@ -5,60 +5,56 @@ Final Project, MIT 15.093 - Optimization Methods
 <img src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/a14c461a-9610-4110-bf76-25fbedee8895" width="550" />
 
 ## Summary
+```
 We find that tree-based methods such as XGBoost, Random Forest, CART and OCT can sometimes outperform neural networks on next character prediction while offering interpretability. This suggests that tree-based methods may be a viable alternative to neural networks for small to mid-sized language models.
+```
 
 ## Problem and Motivation
-Neural networks are highly popular as models of choice for autoregressive language modeling (predicting the next token/character/word). However, they are computationally expensive to train.
+The Just-in-Time (JIT) system is a well-known lean manufacturing system pioneered by Toyota that seeks to eliminate waste, which often implied minimizing inventory levels and finding the lowest cost suppliers. While many businesses have pursued JIT as their supply chain strategy, low inventory levels and supplier concentration caused severe shortages when factories and transportation routes were shut down during Covid-19. As seen from a spike in supply chain resilience articles from McKinsey, Bain and BCG during 2021-2023, the missed sales opportunity and reputational damage from unmet demand has generated strong business interest to re-evaluate if JIT is truly the best supply chain strategy.
 
-On the other hand, tree-based models such as XGBoost, RF, CART and OCT can be easier to train and might be able to generate similar predictions. In fact, CART and OCT can even be interpretable. This is also in light of the proof in class that neural networks are equivalent to trees under certain assumptions.
-
-We would thus like to experiment with tree-based methods and compare their performance with established neural network-based methods for autoregressive language modeling.
+However, to the best of our knowledge, there is no publicly available research quantifying the potential profitability improvements under different conditions. This is why we want to explore to what extent do disruptions in supply (modelled by ε) and penalties for unmet demand (modelled by α) affect differentially robust supply chain strategies for Nike (modelled by δ), in terms of profit, inventory levels and concentration of suppliers.
 
 ## Data
 
-We used the cleaned Alpaca Dataset, a slightly modified version of the dataset used to fine-tune the Alpaca large language model. The data consists of instructions for the model, inputs for those instructions, and outputs that the model should try to recreate.
+We use 3 main data sources for this project: Nike Factory Worker Data, Nike 10-K Reports, Drewry World Container Index (for shipping costs).
 
-<img width="850" alt="image" src="https://github.com/jasonjiajs/15.095_ml_under_a_modern_optimization_lens/assets/90637415/db697744-3213-4c21-81af-767d3a5a0de4">
+<img width="1200" alt="image" src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/d748b638-2feb-4e02-acab-f5708eec553b">
 
 ## Methods
 
-### Preprocessing
-Our preprocessing involved the following key steps:
-- Tokens: We split sequences of concatenated instruction, input, and output by character, then take pairs of (10 consecutive characters, 11th character) as pairs of (X,Y).
+### Decision Variables
+<img width="922" alt="image" src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/e9536bc8-541f-4cc3-95d5-199ba32114b4">
 
-<img src="https://github.com/jasonjiajs/15.095_ml_under_a_modern_optimization_lens/assets/90637415/48300e54-7f19-4f5d-8119-b126e9e31f3c" width="400" />
+### Notation
+<img width="922" alt="image" src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/8dfd91c6-61da-4ca4-8d0e-6060b536575a">
 
-- We add an ‘[EOS]’ (End Of Sequence) token to the end of the sequence, which is the concatenation of the instruction, inputs and outputs. We include this so that at generation time, if a model generates an [EOS] token, this lets us know that the model is done generating an output.
-- One-hot encoding of characters: Each character is mapped to an index, and each character is converted to a vector using one-hot encoding. Each of these one-hot encoded vectors is concatenated to make a binary input vector of size (vocabulary size) * (context length)
-- Train/test split: We use an 80/20 train-test split.
+<img width="922" alt="image" src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/c56df364-ce35-4c24-a1db-0b2532cfe290">
 
-### Tree-Based Methods
-We tested several tree-based methods for autoregressive language modeling, including:
-- CART
-- XGBoost
-- Random Forest
+<img width="922" alt="image" src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/a38de80e-02e5-4680-a0e2-b384abe165c0">
 
-### Neural Network Methods (Benchmark)
-We use feedforward neural networks (FFNs) as our benchmark. We choose a straightforward model architecture comprising an input layer, a hidden layer and an output layer. Here, embedding size is the number of rows of the weight matrix representing the hidden layer. The input to this model is the one-hot encoded context vector, which is the same input as the tree-based methods receive and makes results more comparable between methods.
+## Model
 
-### Evaluation
-- Training and Test Accuracy
-- Training Time
-- Interpretability
+### Starting formulation
+
+<img width="922" alt="image" src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/e22d36c9-55a7-4fe5-b2f3-8c08671c32cb">
+
+### Robustness: Incorporating Uncertainty in Availability
+
+<img width="922" alt="image" src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/a1aeb0ef-ef16-4838-bc8b-17e0fe90cf5a">
+
+### Evaluation of various strategies under different settings
+
+<img width="922" alt="image" src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/1496210a-b88f-4d97-b821-e7f6e03a7e5d">
 
 ## Key Findings
-1. Tree-based methods can sometimes **outperform** neural networks in next character prediction for the dataset sizes we trained on.
+1. With greater unexpected supply chain disruptions, a somewhat robust strategy almost always performs better than a non-robust strategy. As ε increases, the percentage profit improvement of a δ-robust strategy compared to a non-robust strategy (δ = 0) tends to be increasingly positive.
 
-![image](https://github.com/jasonjiajs/15.095_ml_under_a_modern_optimization_lens/assets/90637415/2b14ad9d-28c8-4271-bcd1-a2db21cf88fb)
 
-2. Tree-based methods are **interpretable** and can lend intuition to how predictions are made.
+2. In line with expectations, inventory levels right before Covid-19 rise as Nike’s supply chain strategy becomes more robust, up to a point.
 
-For example, in the best performing CART model, the root node asks if the previous character is a comma, and if it is then the model predicts that the next character will be a space.
+3. Also in line with expectations, regional Herfindahls right before Covid-19 decrease as Nike’s supply chain strategy becomes more robust, up to a point. This points to regionalization, a strategy to pursue greater supplier diversification at a regional level.
 
-<img width="1228" alt="image" src="https://github.com/jasonjiajs/15.095_ml_under_a_modern_optimization_lens/assets/90637415/fea5d816-e2ef-43ed-ad8a-0c97007f6ac2">
 
 ## Impact and Conclusion
-Our findings suggest that tree-based methods may be viewed as a viable alternative to neural network methods for next character prediction in small to medium sized datasets (<1M training examples).
-- CART models can be trained extremely quickly, and are interpretable, allowing us to inspect the reasons why the model predicted what it did. This could be a step toward alternative architectures of more interpretable mid-sized language models.
-- Our experiments indicate that more data produces better results, and there is no reason why the process couldn't scale to larger datasets. However, increasing the context lengths of these models may require significant amounts of data.
-
+Our model showed that even with a blunt robust strategy, it can be more profitable to maintain healthier inventory levels and source from more diverse suppliers. In practice, this could involve actions such as dual sourcing of raw ma- terials, increasing inventory of critical products, near-shoring and increasing supplier base, as well as regionalization.
+While costly to guard against supply chain uncertainty, the benefits come through during disruptions such as Covid-19, which should not be dismissed as a one-off event. If businesses such as Nike are still adopting a Just-in- Time model, they should take immediate action to transition towards a more resilient, “Just-in-Case” strategy.
