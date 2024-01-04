@@ -2,7 +2,7 @@
 
 Final Project, MIT 15.093 - Optimization Methods
 
-<img src="" width="550" />
+<img src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/a14c461a-9610-4110-bf76-25fbedee8895" width="550" />
 
 ## Summary
 We find that tree-based methods such as XGBoost, Random Forest, CART and OCT can sometimes outperform neural networks on next character prediction while offering interpretability. This suggests that tree-based methods may be a viable alternative to neural networks for small to mid-sized language models.
