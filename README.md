@@ -49,15 +49,15 @@ We use 3 main data sources for this project: Nike Factory Worker Data, Nike 10-K
 ## Key Findings
 1. With greater unexpected supply chain disruptions, a somewhat robust strategy almost always performs better than a non-robust strategy. As ε increases, the percentage profit improvement of a δ-robust strategy compared to a non-robust strategy (δ = 0) tends to be increasingly positive.
 
-<img width="1000" alt="image" src="./output/profit_improvement.png">
+<img width="922" alt="image" src="./output/profit_improvement.png">
 
 2. In line with expectations, inventory levels right before Covid-19 rise as Nike’s supply chain strategy becomes more robust, up to a point.
 
-<img width="1000" alt="image" src="./output/inventory_2020.png">
+<img width="922" alt="image" src="./output/inventory_2020.png">
 
 3. Also in line with expectations, regional Herfindahls right before Covid-19 decrease as Nike’s supply chain strategy becomes more robust, up to a point. This points to regionalization, a strategy to pursue greater supplier diversification at a regional level.
 
-<img width="1000" alt="image" src="./output/herfindahl_2020.png">
+<img width="922" alt="image" src="./output/herfindahl_2020.png">
 
 ## Impact and Conclusion
 Our model showed that even with a blunt robust strategy, it can be more profitable to maintain healthier inventory levels and source from more diverse suppliers. In practice, this could involve actions such as dual sourcing of raw ma- terials, increasing inventory of critical products, near-shoring and increasing supplier base, as well as regionalization.
