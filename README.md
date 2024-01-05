@@ -10,6 +10,12 @@ Even with a blunt robust strategy, it can be more profitable for firms to mainta
 ## Problem and Motivation
 The Just-in-Time (JIT) system is a well-known lean manufacturing system pioneered by Toyota that seeks to eliminate waste, which often implied minimizing inventory levels and finding the lowest cost suppliers. While many businesses have pursued JIT as their supply chain strategy, low inventory levels and supplier concentration caused severe shortages when factories and transportation routes were shut down during Covid-19. As seen from a spike in supply chain resilience articles from McKinsey, Bain and BCG during 2021-2023, the missed sales opportunity and reputational damage from unmet demand has generated strong business interest to re-evaluate if JIT is truly the best supply chain strategy.
 
+<p float="left">
+  <img src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/683a1987-ded7-44be-9673-80ed619f78b8" width="500" />
+  <img src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/9330242a-baad-4c6f-9b37-fd90b7f2855d" width="500" /> 
+  <img src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/bd11641c-d8f4-4822-85d8-66838ada9e61" width="380" />
+</p>
+
 However, to the best of our knowledge, there is no publicly available research quantifying the potential profitability improvements under different conditions. This is why we want to explore to what extent do disruptions in supply (modelled by ε) and penalties for unmet demand (modelled by α) affect differentially robust supply chain strategies for Nike (modelled by δ), in terms of profit, inventory levels and concentration of suppliers.
 
 ## Data
