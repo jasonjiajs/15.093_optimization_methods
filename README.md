@@ -1,6 +1,7 @@
 # Is Just-in-Time really the most profitable supply chain strategy for Nike in an uncertain world?
 
 Final Project, MIT 15.093 - Optimization Methods
+Team Members: [Jason Jia](https://www.linkedin.com/in/jasonjiajs/), [Virginia Maguire](https://www.linkedin.com/in/virginia-maguire/)
 
 <img src="https://github.com/jasonjiajs/just-in-time-nike/assets/90637415/a14c461a-9610-4110-bf76-25fbedee8895" width="550" />
 
